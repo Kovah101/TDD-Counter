@@ -28,4 +28,28 @@ class CounterComposeTest {
 
         composeTestRule.onRoot().printToLog("TAG")
     }
+
+    @Test
+    fun uiFunctionsTest(){
+
+        composeTestRule.setContent {
+            CounterScreen()
+        }
+
+        composeTestRule.onNodeWithTag("Counter value").assertTextEquals("0")
+
+        composeTestRule.onNodeWithContentDescription("Plus button").performClick()
+        composeTestRule.onNodeWithContentDescription("Plus button").performClick()
+        composeTestRule.onNodeWithTag("Counter value").assertTextEquals("2")
+
+        composeTestRule.onNodeWithContentDescription("Reset button").performClick()
+        composeTestRule.onNodeWithTag("Counter value").assertTextEquals("0")
+
+        for (i in 1..100){
+            composeTestRule.onNodeWithTag("Minus button").performClick()
+        }
+        composeTestRule.onNodeWithTag("Counter value").assertTextEquals("-100")
+
+
+    }
 }
