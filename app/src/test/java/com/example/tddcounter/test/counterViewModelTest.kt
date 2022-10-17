@@ -1,6 +1,5 @@
 package com.example.tddcounter.test
 
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.tddcounter.viewmodel.CounterViewModel
 import org.junit.Assert.assertEquals

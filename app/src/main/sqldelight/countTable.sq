@@ -1,0 +1,23 @@
+CREATE TABLE CounterTable (
+    countId INTEGER NOT NULL UNIQUE PRIMARY KEY,
+    countValue INTEGER NOT NULL DEFAULT 0
+);
+
+getCount:
+SELECT countValue
+FROM CounterTable;
+
+startNewCount:
+INSERT OR REPLACE INTO CounterTable (
+countValue
+)
+DEFAULT VALUES;
+
+updateCount:
+INSERT OR REPLACE INTO CounterTable (
+countValue
+)
+VALUES (?);
+
+clearCount:
+DELETE FROM CounterTable;
