@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.squareup.sqldelight'
+    id 'org.jetbrains.kotlin.kapt'
 }
 
 android {
@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    //   val room_version = "2.4.3"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -64,8 +65,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1")
-    implementation "com.squareup.sqldelight:android-driver:1.5.3"
-    implementation "com.squareup.sqldelight:coroutines-extensions-jvm:1.5.3"
+    implementation("androidx.room:room-runtime:2.4.3")
+    annotationProcessor("androidx.room:room-compiler:2.4.3")
+    kapt("androidx.room:room-compiler:2.4.3")
+    implementation("androidx.room:room-ktx:2.4.3")
 
     // UI Tests
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.1")
@@ -79,5 +82,7 @@ dependencies {
     testImplementation "androidx.test:core-ktx:1.4.0"
     testImplementation "org.robolectric:robolectric:4.9"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testImplementation 'com.squareup.sqldelight:sqlite-driver:1.5.3'
+    testImplementation("androidx.room:room-testing:2.4.3")
+    testImplementation("androidx.room:room-compiler-processing-testing:2.4.3")
+
 }
