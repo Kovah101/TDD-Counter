@@ -84,5 +84,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation("androidx.room:room-testing:2.4.3")
     testImplementation("androidx.room:room-compiler-processing-testing:2.4.3")
+    androidTestImplementation "com.google.truth:truth:1.0.1"
+    androidTestImplementation "android.arch.core:core-testing:1.0.0"
 
 }

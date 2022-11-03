@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
 import com.example.tddcounter.database.CountDAO
 import com.example.tddcounter.database.CountDatabase
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +21,7 @@ import java.io.IOException
 import java.util.concurrent.CountDownLatch
 
 @RunWith(AndroidJUnit4::class)
+@SmallTest
 class BasicTest {
     private lateinit var countDAO: CountDAO
     private lateinit var db: CountDatabase
@@ -40,7 +42,7 @@ class BasicTest {
 
     @Test
     @Throws(Exception::class)
-    fun databaseSimpleTest() {
+    fun databaseSimpleTest() =
        runBlocking {
             countDAO.startNewCount()
 
@@ -53,5 +55,5 @@ class BasicTest {
         }
 
 
-    }
+
 }
