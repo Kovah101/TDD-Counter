@@ -1,4 +1,4 @@
-package com.example.tddcounter.test
+package com.example.tddcounter
 
 import android.content.Context
 import androidx.room.Room
@@ -13,7 +13,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
@@ -29,20 +28,20 @@ class CounterDatabaseTest {
     }
 
     @After
-    @Throws(IOException::class)
+   // @Throws(IOException::class)
     fun closeDb(){
         db.close()
     }
 
     @Test
-    @Throws(Exception::class)
+    //@Throws(Exception::class)
     suspend fun initialiseCountTest(){
         countDAO.startNewCount()
         assertEquals(countDAO.getCount().count(), 0)
     }
 
     @Test
-    @Throws(Exception::class)
+   // @Throws(Exception::class)
     suspend fun countDaoFunctionsTest(){
         countDAO.startNewCount()
 
