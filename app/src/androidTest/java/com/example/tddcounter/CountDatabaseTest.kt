@@ -8,6 +8,7 @@ import com.example.tddcounter.database.Count
 import com.example.tddcounter.database.CountDAO
 import com.example.tddcounter.database.CountDatabase
 import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.After
 import org.junit.Before
@@ -37,19 +38,23 @@ class CountDatabaseTest {
     @Test
     @Throws(Exception::class)
     fun initialiseCountTest() {
-        countDAO.startNewCount()
-        assertEquals(countDAO.getCount(), 0)
+        runBlocking {
+            countDAO.startNewCount()
+            assertEquals(countDAO.getCount(), 0)
+        }
     }
 
-//    @Test
-//    @Throws(Exception::class)
-//    suspend fun countDaoFunctionsTest(){
-//        countDAO.startNewCount()
-//
-//        countDAO.updateCount(Count(count = 4))
-//        assertEquals(countDAO.getCount(), 4)
-//
-//        countDAO.clearCount()
-//        assertEquals(countDAO.tableCount(), 0)
-//    }
+    @Test
+    @Throws(Exception::class)
+    fun countDaoFunctionsTest(){
+        runBlocking {
+            countDAO.startNewCount()
+
+            countDAO.updateCount(Count(count = 4))
+            assertEquals(countDAO.getCount(), 4)
+
+            countDAO.clearCount()
+            assertEquals(countDAO.tableCount(), 0)
+        }
+    }
 }
