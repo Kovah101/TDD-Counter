@@ -37,7 +37,7 @@ class CounterDatabaseTest {
     //@Throws(Exception::class)
     suspend fun initialiseCountTest(){
         countDAO.startNewCount()
-        assertEquals(countDAO.getCount().count(), 0)
+        assertEquals(countDAO.getCount(), 0)
     }
 
     @Test
@@ -46,7 +46,7 @@ class CounterDatabaseTest {
         countDAO.startNewCount()
 
         countDAO.updateCount(Count(count = 4))
-        assertEquals(countDAO.getCount().count(), 4)
+        assertEquals(countDAO.getCount(), 4)
 
         countDAO.clearCount()
         assertEquals(countDAO.tableCount(), 0)

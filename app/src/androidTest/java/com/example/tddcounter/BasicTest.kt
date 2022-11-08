@@ -48,7 +48,7 @@ class BasicTest {
 
            val latch  = CountDownLatch(1)
            val job = async(Dispatchers.IO) {
-               Assert.assertEquals(countDAO.getCount().count(), 0)
+               Assert.assertEquals(countDAO.getCount(), 0)
            }
            latch.await()
            job.cancelAndJoin()

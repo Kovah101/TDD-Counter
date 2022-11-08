@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.tddcounter.database.Count
 import com.example.tddcounter.database.CountDAO
 import com.example.tddcounter.database.CountDatabase
 import kotlinx.coroutines.flow.count
@@ -35,10 +36,20 @@ class CountDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    suspend fun initialiseCountTest() {
-        //runCatching {
+    fun initialiseCountTest() {
         countDAO.startNewCount()
-        assertEquals(countDAO.getCount().count(), 0)
-        //}
+        assertEquals(countDAO.getCount(), 0)
     }
+
+//    @Test
+//    @Throws(Exception::class)
+//    suspend fun countDaoFunctionsTest(){
+//        countDAO.startNewCount()
+//
+//        countDAO.updateCount(Count(count = 4))
+//        assertEquals(countDAO.getCount(), 4)
+//
+//        countDAO.clearCount()
+//        assertEquals(countDAO.tableCount(), 0)
+//    }
 }

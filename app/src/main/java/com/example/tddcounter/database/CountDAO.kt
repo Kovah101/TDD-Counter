@@ -8,13 +8,16 @@ interface CountDAO {
 
 
         @Query("SELECT count FROM count_table")
-        fun getCount() : Flow<Int>
+        fun getCount() : Int
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         suspend fun updateCount(count: Count)
 
+        @Insert
+        fun insertCount(count: Count)
+
         @Query("INSERT INTO count_table DEFAULT VALUES")
-        suspend fun startNewCount()
+        fun startNewCount()
 
         @Query("DELETE FROM count_table")
         suspend fun clearCount()

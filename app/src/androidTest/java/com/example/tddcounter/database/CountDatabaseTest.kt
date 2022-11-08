@@ -36,7 +36,7 @@ class CountDatabaseTest {
     @Test fun basicTest(){
         runBlocking {
             countDAO.startNewCount()
-            assertEquals(countDAO.getCount().count(), 0)
+            assertEquals(countDAO.getCount(), 0)
         }
     }
 }
