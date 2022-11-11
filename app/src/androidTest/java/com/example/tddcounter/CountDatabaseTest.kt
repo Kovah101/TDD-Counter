@@ -3,13 +3,16 @@ package com.example.tddcounter
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.tddcounter.database.Count
 import com.example.tddcounter.database.CountDAO
 import com.example.tddcounter.database.CountDatabase
+import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.hamcrest.CoreMatchers.`is`
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -40,21 +43,38 @@ class CountDatabaseTest {
     fun initialiseCountTest() {
         runBlocking {
             countDAO.startNewCount()
-            assertEquals(countDAO.getCount(), 0)
+            assertEquals(countDAO.getCount().first(), 0)
         }
     }
 
     @Test
     @Throws(Exception::class)
-    fun countDaoFunctionsTest(){
+    fun insertReplaceTest(){
         runBlocking {
-            countDAO.startNewCount()
-
             countDAO.updateCount(Count(count = 4))
-            assertEquals(countDAO.getCount(), 4)
-
-            countDAO.clearCount()
-            assertEquals(countDAO.tableCount(), 0)
+            assertEquals(countDAO.getCount().first(), 4)
         }
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun deleteTest(){
+        runBlocking {
+            countDAO.updateCount(Count(count = 2))
+            countDAO.clearCount()
+            assertEquals( countDAO.getCount().first(), null )
+        }
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun tableCountTest(){
+        runBlocking {
+            countDAO.updateCount(Count(count = 7))
+            assertEquals(countDAO.tableCount(), 1)
+            countDAO.insertCount(Count(count = 4))
+            assertThat(countDAO.tableCount(), `is`(2))
+        }
+    }
+
 }

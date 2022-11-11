@@ -8,7 +8,7 @@ interface CountDAO {
 
 
         @Query("SELECT count FROM count_table")
-        fun getCount() : Int
+        fun getCount() : Flow<Int?>
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         suspend fun updateCount(count: Count)
