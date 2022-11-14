@@ -8,7 +8,9 @@ import com.example.tddcounter.database.Count
 import com.example.tddcounter.database.CountDAO
 import com.example.tddcounter.database.CountDatabase
 import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.*
 import org.junit.After
 import org.junit.Before
@@ -46,15 +48,31 @@ class CountDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun countDaoFunctionsTest(){
+    fun insertReplaceTest(){
         runBlocking {
-            countDAO.startNewCount()
-
             countDAO.updateCount(Count(count = 4))
-            assertEquals(countDAO.getCount(), 4)
+            assertEquals(countDAO.getCount().first(), 4)
+        }
+    }
 
+    @Test
+    @Throws(Exception::class)
+    fun deleteTest(){
+        runBlocking {
+            countDAO.updateCount(Count(count = 2))
             countDAO.clearCount()
-            assertEquals(countDAO.tableCount(), 0)
+            assertEquals( countDAO.getCount().first(), null )
+        }
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun tableCountTest(){
+        runBlocking {
+            countDAO.updateCount(Count(count = 7))
+            assertEquals(countDAO.tableCount(), 1)
+            countDAO.insertCount(Count(count = 4))
+            assertThat(countDAO.tableCount(), `is`(2))
         }
     }
 }
