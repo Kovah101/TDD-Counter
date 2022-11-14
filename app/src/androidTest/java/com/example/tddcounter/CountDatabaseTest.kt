@@ -3,15 +3,16 @@ package com.example.tddcounter
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.tddcounter.database.Count
 import com.example.tddcounter.database.CountDAO
 import com.example.tddcounter.database.CountDatabase
+import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
-import org.junit.Assert.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -42,7 +43,7 @@ class CountDatabaseTest {
     fun initialiseCountTest() {
         runBlocking {
             countDAO.startNewCount()
-            assertEquals(countDAO.getCount(), 0)
+            assertEquals(countDAO.getCount().first(), 0)
         }
     }
 
@@ -75,4 +76,5 @@ class CountDatabaseTest {
             assertThat(countDAO.tableCount(), `is`(2))
         }
     }
+
 }
