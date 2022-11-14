@@ -14,8 +14,8 @@ jobs:
         with:
           java-version: 11
           
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew    
+     # - name: Make gradlew executable
+     #   run: chmod +x ./gradlew    
 
       # Execute unit tests
       - name: Unit Test
