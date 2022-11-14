@@ -9,7 +9,6 @@ import com.example.tddcounter.database.Count
 import com.example.tddcounter.database.CountDAO
 import com.example.tddcounter.database.CountDatabase
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
