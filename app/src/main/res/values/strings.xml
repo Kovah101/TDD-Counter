@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TDD Counter</string>
+    <string name="approveman_check">Approveman check</string>
 </resources>
