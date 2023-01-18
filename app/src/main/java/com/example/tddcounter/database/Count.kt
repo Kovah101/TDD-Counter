@@ -9,6 +9,7 @@ data class Count(
     @PrimaryKey(autoGenerate = true)
     val countId: Int = 0,
 
+
     @ColumnInfo(name = "count", defaultValue = "0")
     val count: Int = 0
 )
