@@ -1,0 +1,15 @@
+from_owner:
+
+required_labels:
+  -quick
+  -versionBump
+
+required_labels_mode:
+  one_of
+
+blacklisted_labels:
+  -bugfix
+  -enhancement
+
+apply_labels: []
+
