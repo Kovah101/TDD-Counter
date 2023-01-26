@@ -1,15 +1,14 @@
 from_owner:
 
 required_labels:
-  -quick
-  -versionBump
+  - quick
+  - versionBump
 
 required_labels_mode:
   one_of
 
 blacklisted_labels:
-  -bugfix
-  -enhancement
+  - bug
 
 apply_labels: []
 
