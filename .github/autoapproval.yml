@@ -8,8 +8,7 @@ required_labels_mode:
   one_of
 
 blacklisted_labels:
-  -bugfix
-  -enhancement
+  -bug
 
 apply_labels: []
 
